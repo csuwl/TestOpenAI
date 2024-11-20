@@ -14,6 +14,9 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MimeTypeUtils;
 
+import javax.imageio.ImageReader;
+import java.awt.*;
+
 @Component
 public class TestOperate {
     @Autowired
@@ -28,8 +31,9 @@ public class TestOperate {
 //        String call = ollamaChatModel.call("你好");
 //        System.out.println(call);
 
-        var imageResource = new FileSystemResource("./picture0.jpg");
-        var userMessage = new UserMessage("屏幕上显示了什么内容？",
+        FileSystemResource imageResource = new FileSystemResource("./picture0.jpg");
+
+        UserMessage userMessage = new UserMessage("屏幕上显示了什么内容？",
                 new Media(MimeTypeUtils.IMAGE_JPEG, imageResource));
 
         ChatResponse chatResponse = ollamaChatModelVision.call(new Prompt(userMessage));
